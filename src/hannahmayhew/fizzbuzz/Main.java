@@ -1,10 +1,18 @@
 package hannahmayhew.fizzbuzz;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("Select maximum value:");
+        Scanner scanner = new Scanner (System.in);
+        int i = scanner.nextInt();
 
-        for (int i = 1; i <= 200; i++) {
+        for (int j = 1; j <= i; j++) {
             Boolean Fizz = false;
             Boolean Buzz = false;
             Boolean Bang = false;
@@ -12,54 +20,53 @@ public class Main {
             Boolean Fezz = false;
             Boolean Reverse = false;
 
-            if (i % 3 == 0) {
+            if (j % 3 == 0) {
                 Fizz = true;
             }
-            if (i % 5 == 0) {
+            if (j % 5 == 0) {
                 Buzz = true;
             }
-            if (i % 7 == 0) {
+            if (j % 7 == 0) {
                 Bang = true;
             }
-            if (i % 11 == 0) {
+            if (j % 11 == 0) {
                 Bong = true;
             }
-            if (i % 13 == 0) {
+            if (j % 13 == 0) {
                 Fezz = true;
             }
-            if (i % 17 == 0) {
+            if (j % 17 == 0) {
                 Reverse = true;
             }
 
-            StringBuilder build = new StringBuilder();
+            List<String> FB = new ArrayList<>();
             if (Fizz) {
-                build.append("Fizz");
-            }
-            if (Buzz) {
-                build.append("Buzz");
-            }
-            if (Bang) {
-                build.append("Bang");
-            }
-            if (Bong) {
-                build.replace(0, build.length(), "Bong");
+                FB.add("Fizz");
             }
             if (Fezz) {
-                if (build.indexOf("B") != -1) {
-                    build.insert(build.indexOf("B"), "Fezz");
-                } else {
-                    build.append("Fezz");
+                FB.add("Fezz");
+            }
+            if (Buzz) {
+                FB.add("Buzz");
+            }
+            if (Bang) {
+                FB.add("Bang");
+            }
+            if (Bong) {
+                FB.clear();
+                if (Fezz) {
+                    FB.add("Fezz");
                 }
+                FB.add("Bong");
             }
             if (Reverse) {
-                build.reverse();
+               Collections.reverse(FB);
             }
-
-            if (build.length() == 0) {
-                System.out.println(i);
+            if (FB.size() == 0) {
+                System.out.println(j);
             } else {
-                System.out.println(build);
-                }
+                System.out.println(FB);
             }
         }
+    }
 }
